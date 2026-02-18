@@ -1,6 +1,3 @@
-# qa-artifact-compression-workflow
-AI-driven QA artifact compression workflow
-
 # QA Artifact Compression Workflow
 
 AI-driven QA artifact compression workflow exploring how structured LLM agents can reduce manual QA artifact planning workload by 60–80% while keeping human testers in control of validation and exploratory testing.
