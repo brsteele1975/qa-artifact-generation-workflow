@@ -1,8 +1,7 @@
 {
   "plan_context": {
-    "purpose": "To validate the implementation of the new checkout flow, ensuring it is faster, supports guest users, and includes email confirmation and discount application.",
+    "purpose": "To validate the implementation of the new checkout flow, ensuring it is faster, easier, and supports guest users.",
     "in_scope": [
-      "Checkout flow",
       "Email confirmation",
       "Guest checkout",
       "Discount code application",

@@ -1,0 +1,146 @@
+[
+  {
+    "req_id": "REQ-001",
+    "risk": "Incorrect discount application could lead to financial discrepancies.",
+    "severity": "high",
+    "severity_basis": "This affects the core user journey and financial transactions.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-001",
+        "req_id": "REQ-001",
+        "objective": "Verify that a discount code can be entered during checkout.",
+        "type": "e2e",
+        "surface": "ui",
+        "priority": "P1",
+        "human_note": null
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-002",
+    "risk": "Potential confusion due to design placement changes.",
+    "severity": "medium",
+    "severity_basis": "Design changes can affect user experience but not core functionality.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-002",
+        "req_id": "REQ-002",
+        "objective": "Ensure the discount code entry is positioned correctly in the checkout flow.",
+        "type": "exploratory",
+        "surface": "workflow",
+        "priority": "P2",
+        "human_note": "Check both cart page and checkout flow for placement."
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-003",
+    "risk": "Ambiguity in discount value type could lead to incorrect discounts.",
+    "severity": "high",
+    "severity_basis": "Incorrect discount calculations can affect financial transactions.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-003",
+        "req_id": "REQ-003",
+        "objective": "Validate that the discount engine correctly interprets the discount code.",
+        "type": "integration",
+        "surface": "service",
+        "priority": "P1",
+        "human_note": "Test with both percentage and flat amount codes if applicable."
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-004",
+    "risk": "Expired codes not returning clear messages could confuse users.",
+    "severity": "medium",
+    "severity_basis": "Affects user experience but not core functionality.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-004",
+        "req_id": "REQ-004",
+        "objective": "Ensure expired discount codes return a clear error message.",
+        "type": "unit",
+        "surface": "api",
+        "priority": "P2",
+        "human_note": null
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-005",
+    "risk": "Valid codes not applicable to items could lead to user frustration.",
+    "severity": "medium",
+    "severity_basis": "Affects user experience but not core functionality.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-005",
+        "req_id": "REQ-005",
+        "objective": "Verify that non-applicable valid codes return a user-facing message.",
+        "type": "unit",
+        "surface": "api",
+        "priority": "P2",
+        "human_note": null
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-006",
+    "risk": "Allowing multiple codes could lead to incorrect discount application.",
+    "severity": "high",
+    "severity_basis": "This affects financial transactions and order processing.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-006",
+        "req_id": "REQ-006",
+        "objective": "Ensure only one discount code can be applied per order.",
+        "type": "e2e",
+        "surface": "workflow",
+        "priority": "P1",
+        "human_note": null
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-007",
+    "risk": "Order total not updating in real time could mislead users.",
+    "severity": "medium",
+    "severity_basis": "Affects user experience but not core functionality.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-007",
+        "req_id": "REQ-007",
+        "objective": "Verify that the order total updates in real time when a discount code is applied.",
+        "type": "non_functional",
+        "surface": "ui",
+        "priority": "P2",
+        "human_note": "Check for performance issues during real-time updates."
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-008",
+    "risk": "Discount code entry not working on mobile could limit accessibility.",
+    "severity": "medium",
+    "severity_basis": "Affects user experience on mobile devices.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-008",
+        "req_id": "REQ-008",
+        "objective": "Ensure the discount code entry field works on the mobile layout.",
+        "type": "e2e",
+        "surface": "ui",
+        "priority": "P2",
+        "human_note": "Test on various mobile devices and screen sizes."
+      }
+    ]
+  }
+]

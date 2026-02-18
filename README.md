@@ -56,6 +56,22 @@ Constraints:
 - Not a coverage auditing engine (v1)
 
 ---
+## How This System Improves
+
+The workfllow is designed to get better through use. During initial testing, severity
+heuristics were updated to better define the boundaries of the core user
+journey — specifically to include post-purchase communication as a high
+severity concern.
+
+The pattern for iteration is simple:
+- Human reviewer identifies a consistent gap in agent output
+- The agent prompt is updated to encode the fix
+- The system is re-run to confirm the correction holds
+
+Reviewers are not just approving output — they are actively improving the
+system through their judgment.
+
+---
 
 ## Status
 

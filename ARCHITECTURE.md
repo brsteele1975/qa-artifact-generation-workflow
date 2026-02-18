@@ -175,7 +175,7 @@ Both fields are required on every test case. A test case missing either field is
 
 | Severity | Condition |
 |---|---|
-| `high` | Affects data integrity, security, payment, or core user journey |
+| `high` | Affects data integrity, security, payment, core user journey, or post-purchase communication critical to the user completing their goal |
 | `medium` | Affects secondary features, performance thresholds, or UX degradation |
 | `low` | Cosmetic, edge-case only, or easily recoverable |
 

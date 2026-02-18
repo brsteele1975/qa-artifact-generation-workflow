@@ -28,10 +28,11 @@ load_dotenv()
 # --- Paths ---
 PROMPT_PATH = Path("prompts/intake_prompt.md")
 # --- Input file --- uncomment the one you want to run
-INPUT_PATH = Path("sample_input/prd_messy.md")
+# INPUT_PATH = Path("sample_input/prd_messy.md")
 # INPUT_PATH = Path("sample_input/prd_clean_agile.md")
-# INPUT_PATH = Path("sample_input/raw_prd_notes.md")
-OUTPUT_PATH = Path(f"sample_output/{INPUT_PATH.stem}_output.json")
+INPUT_PATH = Path("sample_input/raw_prd_notes.md")
+
+OUTPUT_PATH = Path(f"sample_output/{INPUT_PATH.stem}/intake_output.json")
 
 # --- Load system prompt ---
 def load_system_prompt(path: Path) -> str:

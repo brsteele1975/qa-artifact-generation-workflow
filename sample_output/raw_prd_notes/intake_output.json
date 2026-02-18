@@ -8,7 +8,7 @@
       "Mobile layout support for discount code entry"
     ],
     "out_of_scope": [
-      "Support for stacking multiple discount codes",
+      "Stacking multiple discount codes",
       "Handling of zero total order scenarios"
     ]
   },
@@ -32,7 +32,7 @@
       ],
       "testable": true,
       "ambiguity_flags": [
-        "Uncertainty about final placement in the flow"
+        "Design placement may change from cart page to checkout flow."
       ]
     },
     {
@@ -44,7 +44,7 @@
       ],
       "testable": true,
       "ambiguity_flags": [
-        "Lack of documentation for the discount engine endpoint"
+        "Unclear if the discount value is a percentage, flat amount, or both."
       ]
     },
     {

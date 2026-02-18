@@ -1,0 +1,110 @@
+[
+  {
+    "req_id": "REQ-001",
+    "risk": "Email confirmation may not be sent promptly, affecting customer satisfaction.",
+    "severity": "medium",
+    "severity_basis": "The timing of email delivery affects user experience but not core functionality.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-001",
+        "req_id": "REQ-001",
+        "objective": "Verify that an email confirmation is sent after a purchase.",
+        "type": "integration",
+        "surface": "service",
+        "priority": "P1",
+        "human_note": null
+      },
+      {
+        "tc_id": "TC-002",
+        "req_id": "REQ-001",
+        "objective": "Explore the timing of email delivery to ensure it meets user expectations.",
+        "type": "exploratory",
+        "surface": "workflow",
+        "priority": "P2",
+        "human_note": "Focus on the timing aspect of email delivery."
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-002",
+    "risk": "Potential confusion or friction in the guest checkout process.",
+    "severity": "medium",
+    "severity_basis": "Guest checkout is a secondary feature but impacts user acquisition and conversion.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-003",
+        "req_id": "REQ-002",
+        "objective": "Verify that users can complete a purchase without creating an account.",
+        "type": "e2e",
+        "surface": "workflow",
+        "priority": "P1",
+        "human_note": null
+      },
+      {
+        "tc_id": "TC-004",
+        "req_id": "REQ-002",
+        "objective": "Explore the UX design for guest checkout to identify potential friction points.",
+        "type": "exploratory",
+        "surface": "ui",
+        "priority": "P2",
+        "human_note": "Pay attention to how the design encourages account creation."
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-003",
+    "risk": "Incorrect handling of discount codes could lead to incorrect pricing.",
+    "severity": "high",
+    "severity_basis": "Incorrect pricing directly affects revenue and customer trust.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-005",
+        "req_id": "REQ-003",
+        "objective": "Verify that a single discount code can be applied and updates the total correctly.",
+        "type": "integration",
+        "surface": "service",
+        "priority": "P1",
+        "human_note": null
+      },
+      {
+        "tc_id": "TC-006",
+        "req_id": "REQ-003",
+        "objective": "Explore the handling of multiple and expired discount codes.",
+        "type": "exploratory",
+        "surface": "workflow",
+        "priority": "P1",
+        "human_note": "Test various combinations of valid, invalid, and expired codes."
+      }
+    ]
+  },
+  {
+    "req_id": "REQ-004",
+    "risk": "Incomplete or incorrect order details could confuse customers.",
+    "severity": "medium",
+    "severity_basis": "Order details are important for customer satisfaction but not critical to transaction completion.",
+    "severity_locked": false,
+    "test_cases": [
+      {
+        "tc_id": "TC-007",
+        "req_id": "REQ-004",
+        "objective": "Verify that order details are displayed correctly after purchase.",
+        "type": "e2e",
+        "surface": "ui",
+        "priority": "P1",
+        "human_note": null
+      },
+      {
+        "tc_id": "TC-008",
+        "req_id": "REQ-004",
+        "objective": "Explore the inclusion of estimated delivery information.",
+        "type": "exploratory",
+        "surface": "ui",
+        "priority": "P2",
+        "human_note": "Check if estimated delivery is displayed and accurate."
+      }
+    ]
+  }
+]
