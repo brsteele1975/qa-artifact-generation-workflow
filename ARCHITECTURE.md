@@ -1,4 +1,4 @@
-# QA Artifact Compression Workflow — v1 Architecture
+# QRAFT — QA Artifact Generation Pipeline — v1 Architecture
 
 ---
 
@@ -115,9 +115,9 @@ or explicitly absent in the PRD.
 
 **Role:** Apply testing strategy to each requirement. Assign risk, severity, and generate fully classified test cases.
 
-**Does not:** Modify or re-interpret requirements. Does not receive or use `plan_context`.
+**Does not:** Modify or re-interpret requirements.
 
-**Input:** `requirements` array from Intake Agent output only
+**Input:** `requirements` array and `project_context` block from Intake Agent output
 
 **Output:** Array of risk-annotated test plan objects
 
@@ -227,7 +227,7 @@ Do not generate exploratory test cases for clean, unambiguous requirements.
 **Output Template**
 
 ```markdown
-# AQAB Test Plan
+# QRAFT Test Plan
 **Artifact ID:** {artifact_id}
 **PRD Source:** {prd_source}
 **Generated:** {date}
@@ -314,7 +314,7 @@ Do not generate exploratory test cases for clean, unambiguous requirements.
 
 | From | To | Payload |
 |---|---|---|
-| Intake Agent | Risk Agent | `requirements` array only — `plan_context` is not passed |
+| Intake Agent | Risk Agent | `requirements` array + `project_context` block |
 | Intake Agent | Review Agent | Full output — `plan_context` + `requirements` array |
 | Risk Agent | Review Agent | Full risk and test case array |
 
@@ -374,11 +374,16 @@ The following are explicitly out of scope for v1:
 
 ---
 
-## 10. Phased Evolution (Post v1)
+## 10. Phased Evolution
 
-| Phase | Addition |
-|---|---|
-| v1.1 | Prompt tuning based on human reviewer feedback |
-| v2 | Coverage Auditor agent re-introduced |
-| v2 | Artifact versioning and diff tracking |
-| v3 | Feedback loop — human overrides inform agent heuristics |
+| Phase | Name | Status | Input | Output | Human Gate |
+|-------|------|--------|-------|--------|------------|
+| 1 | Test Plan Generation | Complete | PRD (Markdown) | Structured test plan (.md) | Required before Phase 3 |
+| 2 | Test Data Generation | Planned | Accepted test plan | Test data specification (.md) | Required before Phase 3 |
+| 3a | Cypress Script Agent | Planned | Test plan + test data | Cypress test scripts | Required before Phase 5 |
+| 3b | Playwright Script Agent | Planned | Test plan + test data | Playwright test scripts | Required before Phase 5 |
+| 3c | Postman Script Agent | Planned | Test plan + test data | Postman collection (.json) | Required before Phase 5 |
+| 3d | k6 Script Agent | Planned | Test plan + test data | k6 performance scripts | Required before Phase 5 |
+| 4 | Coverage Summary | Planned | All Phase 3 outputs | Summary report (.md) | Required before Phase 5 |
+| 5a | PR Description Agent | Planned | Accepted artifacts | PR description (.md) | Team discretion |
+| 5b | PR Review Agent | Planned | PR diff + test plan | Risk assessment (.md) | Team discretion |

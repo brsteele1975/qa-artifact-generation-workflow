@@ -1,6 +1,6 @@
-# QA Artifact Compression Workflow
+# QRAFT — QA Artifact Generation Pipeline
 
-AI-driven QA artifact compression workflow exploring how structured LLM agents can reduce manual QA artifact planning workload by 60–80% while keeping human testers in control of validation and exploratory testing.
+AI-driven QA artifact generation pipeline exploring how structured LLM agents can reduce manual QA artifact planning workload by 60–80% while keeping human testers in control of validation and exploratory testing.
 
 ---
 
@@ -75,8 +75,6 @@ system through their judgment.
 
 ## Status
 
-v1 specification complete.  
-Agent implementation in progress.
+Phase 1 complete. Test plan generation from PRDs is fully implemented and validated against multiple input types.
 
-See `/docs/V1_SPEC.md` for full system design.
-
+QRAFT is a multi-phase pipeline. Phase 1 is the foundation — subsequent phases cover test data generation, test script generation (Cypress, Playwright, Postman, k6), coverage summary reporting, and PR artifact generation. See `ARCHITECTURE.md` for the full pipeline design and roadmap.
