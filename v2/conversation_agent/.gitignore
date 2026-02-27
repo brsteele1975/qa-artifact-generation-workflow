@@ -1,0 +1,13 @@
+# Active run pointer — ephemeral, should not be committed
+.current_run
+
+# Run artifacts
+runs/
+
+# Python
+__pycache__/
+*.py[cod]
+.env
+
+# Pytest
+.pytest_cache/
