@@ -1,0 +1,114 @@
+# QRAFT
+## QA Artifact Generation Pipeline
+**Project Charter - Living Document - 2026**
+
+---
+
+## Problem
+
+QA teams are under compounding pressure. Release cycles are shortening, feature scope is growing, and the expectation to maintain quality hasn't changed - but headcount, time, and cognitive bandwidth remain fixed. The artifact burden is a major contributor to this squeeze.
+
+Before a single test is run, a QA team must produce test plans, test data, test scripts, and PR documentation - often from scratch, for every release. This work is repetitive, time-consuming, and does not require a senior engineer to produce. Yet it consistently lands on the plates of the most experienced people on the team.
+
+The result is a team that is too busy producing artifacts to improve them, too stretched to shift quality left, and too slow to keep pace with development without cutting corners.
+
+---
+
+## Solution
+
+QRAFT is a multi-phase AI pipeline that automates QA artifact generation across the software development lifecycle. It takes structured inputs - PRDs, accepted test plans, test data specifications - and produces human-reviewable artifacts at each stage.
+
+QRAFT does not replace QA judgment. Every phase produces a starting point, not a final answer. A mandatory human review gate separates Phase 1 from all downstream generation. The team reviews, adjusts, and accepts the test plan as the source of truth before any scripts or reports are generated. This keeps humans accountable for quality decisions while removing the mechanical burden of producing the artifacts that inform those decisions.
+
+The system is designed to be adaptable. All agents operate from best-practice defaults. Every organisation has different tooling, culture, and risk tolerance - QRAFT gives teams a structured starting point they can tune, not a rigid process they have to fit into.
+
+---
+
+## Pipeline Overview
+
+| Phase | Name | Status | Input | Output | Human Gate |
+|-------|------|--------|-------|--------|------------|
+| 1 | Test Plan Generation | Complete | PRD (Markdown) | Structured test plan (.md) | Required before Phase 3 |
+| 2 | Test Data Generation | Planned | Accepted test plan | Test data specification (.md) | Required before Phase 3 |
+| 3a | Cypress Script Agent | Planned | Test plan + test data | Cypress test scripts | Required before Phase 5 |
+| 3b | Playwright Script Agent | Planned | Test plan + test data | Playwright test scripts | Required before Phase 5 |
+| 3c | Postman Script Agent | Planned | Test plan + test data | Postman collection (.json) | Required before Phase 5 |
+| 3d | k6 Script Agent | Planned | Test plan + test data | k6 performance scripts | Required before Phase 5 |
+| 4 | Coverage Summary | Planned | All Phase 3 outputs | Summary report (.md) | Required before Phase 5 |
+| 5a | PR Description Agent | Planned | Accepted artifacts | PR description (.md) | Team discretion |
+| 5b | PR Review Agent | Planned | PR diff + test plan | Risk assessment (.md) | Team discretion |
+
+---
+
+## How This Project Evolves
+
+QRAFT is being built in three architectural phases. Each phase changes how the system works, not just what it produces.
+
+**Phase 1: Smart Automation (complete, tagged v1.0)**
+Linear pipeline. Each step is a single LLM call with no memory, no revision, no inter-agent communication. PRD goes in, test plan comes out. If the output is wrong, you rerun the whole thing. This phase established the risk heuristics, JSON contracts, and severity calibration that carry forward into everything built on top of it.
+
+**Phase 2: AI Agents (in progress)**
+LangChain-based agents that maintain context, accept targeted revision, and flag problems instead of guessing. The Strategy Agent replaces v1's separate Intake and Risk agents. Agents know what already exists and can be told to fix a specific test case without rerunning the full pipeline. Human review gates remain non-negotiable.
+
+**Phase 3: Orchestrated Workflows (future)**
+Agents coordinate handoffs, route problems to the right place, and manage the flow from PRD to PR with minimal manual kickoff. The pipeline becomes a workflow, not a sequence of manual steps.
+
+This document evolves as the project does. Each phase will surface decisions and constraints that reshape what comes next.
+
+---
+
+## Design Principles
+
+- Each agent is responsible for one thing. Parsing, strategy, and rendering are always separate concerns.
+- Prompts are configuration, not code. They are versioned, tested, and iterated like any other engineering artifact.
+- Output quality reflects input quality. The pipeline is a mirror - clean inputs produce clean outputs.
+- Human review is non-negotiable. Agents produce starting points. Teams own the decisions.
+- Framework defaults are not mandates. All script agents follow best practices; every organisation will need to adapt.
+- Unit and integration tests defer to engineering. These test types are represented in the plan but not generated by default.
+
+---
+
+## Scope
+
+### In Scope
+
+- Test plan generation from PRDs (Phase 1)
+- Test data specification generation (Phase 2)
+- Test script generation: Cypress, Playwright, Postman, k6 (Phase 3)
+- Coverage summary report (Phase 4)
+- PR description and PR review agents (Phase 5)
+
+### Out of Scope
+
+- Environment management and test data lifecycle tooling
+- Regression scope recommendation (deferred - requires significant contextual judgment)
+- Bug report generation (standalone tool candidate, not part of SDLC pipeline)
+- Unit and integration script generation (engineering-owned by default)
+- Automated pipeline orchestration between phases (deferred to Phase 3)
+
+---
+
+## Success Criteria
+
+- Each agent produces a valid, human-reviewable artifact from a well-formed input
+- Output remains useful and reviewable when input quality degrades (messy PRD, raw notes)
+- Prompt heuristics are versioned, tested, and improved as defects surface
+- The full pipeline can be demonstrated end-to-end against at least three input types
+- Any QA practitioner can fork the repo and run the pipeline with minimal setup
+
+---
+
+## Open Questions
+
+These are known gaps that will need to be addressed as the system matures. They are not blockers for the current phase, but they represent the next layer of engineering rigor.
+
+- **Prompt regression testing.** When a prompt changes, how do we know it didn't break something that was working? No evaluation framework exists yet for validating prompt changes against known-good outputs.
+- **Hallucination leakage.** How do we prevent hallucinated test cases from surviving review and leaking into downstream scripts? The human review gate helps, but a more formal validation step may be needed.
+- **LangChain complexity management.** LangChain is the right framework for Phase 2, but it can introduce unnecessary abstraction if not kept lean. Worth revisiting as agents grow in number.
+- **Cost and token strategy.** No formal approach to managing API costs or token budgets across the pipeline. Not critical for a portfolio project, but essential for production use.
+- **Observability.** No metrics or logging strategy for monitoring agent behavior over time. How do you know when an agent is degrading?
+- **Coverage mapping model.** Phase 4 (Coverage Summary) requires a formal definition of what "coverage" means across test types, surfaces, and requirements. That model doesn't exist yet.
+
+---
+
+*QRAFT - Project Charter - Open Source - github.com/brsteele1975/qa-reasoning-and-artifact-flow-toolkit*
